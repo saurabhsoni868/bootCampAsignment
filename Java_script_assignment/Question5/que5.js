@@ -6,12 +6,16 @@ var employees = [
   {name: "Raju", age: 40, DOB: new Date(1980, 5, 13), salary: 3000}
 ];
 console.log(employees);
+const answ1 = JSON.stringify(employees);
+document.getElementById("employee-list").innerHTML = answ1;
 
 // part 2
 var richEmployees = employees.filter(function (emp) {
   return emp.salary > 5000;
 });
 console.log(richEmployees);
+const answ2 = JSON.stringify(richEmployees);
+document.getElementById("Filetered_employee-list").innerHTML = answ2;
 
 // part 3
 const groups = employees.reduce((groups, item) => {
@@ -21,6 +25,8 @@ const groups = employees.reduce((groups, item) => {
   return groups;
 }, {});
 console.log(groups);
+const answ3 = JSON.stringify(groups);
+document.getElementById("group_employee-list").innerHTML = answ3;
 
 
 // part 4
@@ -36,3 +42,5 @@ for (let i = 0; i < employees.length; i++)
  }
 }
 console.log(newEmployeesSalary);
+const answ4 = JSON.stringify(newEmployeesSalary);
+document.getElementById("employee-list_salaryLess1000").innerHTML = answ4;
