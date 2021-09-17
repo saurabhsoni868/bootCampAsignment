@@ -1,33 +1,27 @@
 <!doctype html>
-<html>
+<html lang="en">
 <head>
-  <title>JQuery Exercise Twelve</title>
   <meta charset="utf-8">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <style>
-    * {
-      font-family: sans-serif;
-    }
-  </style>
+  <title>event.preventDefault demo</title>
+  <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 </head>
 <body>
-<div class="main">
-  <h1>Hello, JQuery!</h1>
-  <ul>
-    <li id="click-li">This is a clickable list item</li>
-  </ul>
-</div>
+ 
+<div class = parent-div> <a href="https://jquery.com">parent Div</a></div>
+</br>
+</br>
+<div class="log">child Div</div>
+ 
 <script>
-  $(document).ready(function () {
-    $(".main").click(function (event) {
-      console.log("Click event is a-bubbling!");
-      console.log(event.target);
-    });
-    $("#click-li").click(function (event) {
-      console.log(event.target + " clicked on!");
-      event.stopPropagation();
-    });
-  });
+$( ".log" ).click(function( event ) {
+$( ".parent-div" ).click(function( event1 ) {
+  event1.preventDefault();
+  $( ".log" )
+    .append( "    :default " + event1.type + " prevented" )
+    .appendTo( "#log" );
+});
+});
 </script>
+ 
 </body>
 </html>

@@ -12,7 +12,7 @@
 </head>
 <body>
 <div>
-  <button>Click for magic</button>
+  <button>Click to get the Data from Server</button>
   <h5 class="server-data" >data_item<h5>
 </div>
 <script>
@@ -20,7 +20,6 @@
     $("button").click(function(){
       $.get("https://reqres.in/api/users", function(data, status){
         console.log(data);
-        alert("Status: " + status);
 		 var string_data = JSON.stringify(data);
         $(".server-data").text(string_data);
       });

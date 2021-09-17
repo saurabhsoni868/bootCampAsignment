@@ -12,13 +12,13 @@
 </head>
 <body>
 <div id="main">
-  <p>Original text</p>
+  <div>Original text</div>
 </div>
 <div>Another div</div>
 <script>
   $(document).ready(function () {
     console.log("Your document has loaded");
-    $("div > p").html("<strong>This is my new HTML</strong>");
+    $("div > ").html("<p><strong>This is my new HTML</strong></p>");
   });
 </script>
 </body>
