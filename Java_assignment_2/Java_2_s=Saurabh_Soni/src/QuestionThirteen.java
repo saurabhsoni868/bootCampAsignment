@@ -20,10 +20,9 @@ public class QuestionThirteen {
         {
             throw new CustomException("This is a custom exception");
         }
-        catch (Exception e)
+        catch (CustomException e)
         {
-            System.out.println(e.getMessage());
-            System.out.println(e.fillInStackTrace());
+            e.printStackTrace();
         }
         finally
         {
