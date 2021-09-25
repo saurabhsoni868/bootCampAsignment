@@ -4,45 +4,55 @@ package com.first.ftn;
  * Question 8: Schedule task using schedule(), scheduleAtFixedRate(), and scheduleWithFixedDelay()
  */
 import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-public class EightQuestion
-{
-    public static void main(String[] args)
-    {
-        System.out.println("Thread starting: " + Thread.currentThread().getName());
+ class CountDownClock extends Thread
+ {
+    private String clockName;
 
-        // schedule()
-        ScheduledExecutorService scheduledExecutorService = Executors.newSingleThreadScheduledExecutor();
+    public CountDownClock(String clockName) {
+        this.clockName = clockName;
+    }
 
-        scheduledExecutorService.schedule(new Runnable()
-        {
-            @Override
-            public void run()
-            {
-                System.out.println("Thread 1: " + Thread.currentThread().getName());
+    public void run() {
+        String threadName = Thread.currentThread().getName();
+
+        for (int i = 5; i >= 0; i--) {
+
+            System.out.printf("%s -> %s: %d\n", threadName, clockName, i);
+
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException ex) {
+                ex.printStackTrace();
             }
-        }, 2, TimeUnit.SECONDS);
+        }
+    }
+}
 
-        // scheduleAtFixedRate()
-        ScheduledExecutorService scheduledExecutorService1 = Executors.newSingleThreadScheduledExecutor();
-        scheduledExecutorService1.scheduleAtFixedRate(new Runnable() {
-            @Override
+public class EightQuestion {
+    public static void main(String[] args) {
+        ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(3);
+
+        CountDownClock clock1 = new CountDownClock("A");
+        CountDownClock clock2 = new CountDownClock("B");
+        CountDownClock clock3 = new CountDownClock("C");
+
+        Future<?> f1 = scheduler.scheduleAtFixedRate(clock1, 3, 1, TimeUnit.SECONDS);
+        Future<?> f2 = scheduler.scheduleWithFixedDelay(clock2, 2, 1, TimeUnit.SECONDS);
+        Future<?> f3 = scheduler.schedule(clock3,  2, TimeUnit.SECONDS);
+
+        Runnable cancelTask = new Runnable() {
             public void run() {
-                System.out.println("Thread 2 (scheduled at fixed rate): " + Thread.currentThread().getName());
+                f1.cancel(true);
+                f2.cancel(true);
+                f3.cancel(true);
             }
-        }, 1, 2, TimeUnit.SECONDS);
+        };
 
-        // scheduleWithFixedDelay()
-        ScheduledExecutorService scheduledExecutorService2 = Executors.newSingleThreadScheduledExecutor();
-        scheduledExecutorService2.scheduleWithFixedDelay(new Runnable() {
-            @Override
-            public void run() {
-                System.out.println("Thread 3 (scheduled with fixed delay): " + Thread.currentThread().getName());
-            }
-        }, 3, 3, TimeUnit.SECONDS);
+        scheduler.schedule(cancelTask, 60, TimeUnit.SECONDS);
 
-        System.out.println("Thread exiting: " + Thread.currentThread().getName());
     }
 }
