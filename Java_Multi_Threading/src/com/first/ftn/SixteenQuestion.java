@@ -6,69 +6,72 @@ package com.first.ftn;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-public class SixteenQuestion {
+public class SixteenQuestion<counter> {
 
-    Lock lock1 = new ReentrantLock(true);
-    Lock lock2 = new ReentrantLock(true);
 
-    public void acquireLock(Lock lock1, Lock lock2) {
-        boolean acquireLock1 = lock1.tryLock();
-        boolean acquireLock2 = lock2.tryLock();
-
-        if (acquireLock1 && acquireLock2) {
-            return;
-        }
-
-        if (acquireLock1) {
-            lock1.unlock();
-        }
-
-        if (acquireLock2) {
-            lock2.unlock();
-        }
-
-    }
-
-    public void workerOne() {
-        acquireLock(lock1, lock2);
-        System.out.println("lock 1 worker 1");
-        System.out.println("lock 2 worker 1");
-        lock2.unlock();
-        lock1.unlock();
-    }
-
-    public void workerTwo() {
-        acquireLock(lock2, lock1);
-        System.out.println("lock 1 worker 2");
-        System.out.println("lock 2 worker 2");
-        lock2.unlock();
-        lock1.unlock();
-    }
-
-    public static void main(String[] args) throws InterruptedException
-    {
-        System.out.println("Thread starting: " + Thread.currentThread().getName());
-        SixteenQuestion tryLockDemo = new SixteenQuestion();
-        Thread thread1 = new Thread(new Runnable()
+        public static int  counter = 0;
+        public static void main (String args[])
         {
-            @Override
-            public void run() {
-                tryLockDemo.workerOne();
-            }
-        });
 
-        Thread thread2 = new Thread(new Runnable()
-        {
-            @Override
-            public void run()
+            final ReentrantLock lockA = new ReentrantLock();
+            final ReentrantLock lockB = new ReentrantLock();
+
+            new Thread()
             {
-                tryLockDemo.workerTwo();
-            }
-        });
-        thread1.start();
-        thread2.start();
-        thread1.join();
-        thread2.join();
-        System.out.println("Thread exiting: " + Thread.currentThread().getName());
+                public void run ()
+                {
+                    while (counter<=10)
+                    {
+                        try
+                        {
+                            System.out.println (this + " acquiring lockA");
+                            if (lockA.tryLock())
+                            {
+                                System.out.println (this + " acquired lockA");
+                                System.out.println (this + " acquiring lockB");
+                                if (lockB.tryLock())
+                                {
+                                    System.out.println (this + " acquired lockB");
+                                }
+                            }
+                        }
+                        finally
+                        {
+                            counter++;
+                            if (lockB.isHeldByCurrentThread()) lockB.unlock();
+                            if (lockA.isHeldByCurrentThread()) lockA.unlock();
+                        }
+                    }
+                }
+            }.start();
+
+            new Thread() {
+                public void run ()
+                {
+                    while (counter<=10)
+                    {
+                        try
+                        {
+                            System.out.println (this + " acquiring lockB");
+                            if (lockB.tryLock())
+                            {
+                                System.out.println(this + " acquired lockB");
+                                System.out.println(this + " acquiring lockA");
+                            }
+                            if (lockA.tryLock())
+                            {
+                                System.out.println (this + " acquired lockA");
+                            }
+                        }
+                        finally
+                        {
+                            counter++;
+                            if (lockA.isHeldByCurrentThread()) lockA.unlock();
+                            if (lockB.isHeldByCurrentThread()) lockB.unlock();
+
+                        }
+                    }
+                }
+            }.start();
+        }
     }
-}
