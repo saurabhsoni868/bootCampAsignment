@@ -13,7 +13,6 @@ public class TenQuestion {
         System.out.println("Sum of all even integers greater than 5 is: " +
                 integers.stream()
                         .filter(integer -> integer > 5)
-                        .filter(integer -> integer % 2 == 0)
                         .reduce(0, (numOne, numTwo) -> numOne + numTwo));
     }
 }
