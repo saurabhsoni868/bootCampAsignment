@@ -1,3 +1,4 @@
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
@@ -28,11 +29,19 @@ public class ToTheNew
 		
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit. SECONDS);
 		
-		WebElement contactUsWebElement = driver.findElement(By.xpath("(//a[@id='h-contact-us'])[2]"));
-	//	WebElement contactUsWebElement = driver.findElement(By.id("h-contact-us"));
-		Actions actions = new Actions(driver);
-		actions.moveToElement(contactUsWebElement);
-		contactUsWebElement.sendKeys(Keys.ENTER);
+		//With the Help of Xpath
+		
+//		WebElement contactUsWebElement = driver.findElement(By.xpath("(//a[@id='h-contact-us'])[2]"));
+//		Actions actions=new Actions(driver);
+//        actions.moveToElement(contactUsWebElement);
+//        contactUsWebElement.sendKeys(Keys.ENTER);
+        
+      //With the Help of ID
+        
+		List<WebElement> contactUs=driver.findElements(By.id("h-contact-us"));
+        Actions actions=new Actions(driver);
+        actions.moveToElement(contactUs.get(1));
+        contactUs.get(1).sendKeys(Keys.ENTER);
 		
 	
 		
