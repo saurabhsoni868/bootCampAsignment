@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="4" passed="4" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2021-10-26T09:55:15 IST" name="Suite" finished-at="2021-10-26T09:57:09 IST" duration-ms="113989">
+    <groups>
+    </groups>
+    <test started-at="2021-10-26T09:55:15 IST" name="Test" finished-at="2021-10-26T09:57:09 IST" duration-ms="113989">
+      <class name="Tests.Scenario_finalized_for_Automation_test.Automationpractice_tests.RegisterToWebsiteTest">
+        <test-method is-config="true" signature="intializeDriver()[pri:0, instance:Tests.Scenario_finalized_for_Automation_test.Automationpractice_tests.RegisterToWebsiteTest@4e91d63f]" started-at="2021-10-26T09:55:24 IST" name="intializeDriver" finished-at="2021-10-26T09:55:25 IST" duration-ms="763" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- intializeDriver -->
+        <test-method is-config="true" signature="openBrowser()[pri:0, instance:Tests.Scenario_finalized_for_Automation_test.Automationpractice_tests.RegisterToWebsiteTest@4e91d63f]" started-at="2021-10-26T09:55:25 IST" name="openBrowser" finished-at="2021-10-26T09:55:33 IST" duration-ms="7496" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- openBrowser -->
+        <test-method signature="registration()[pri:0, instance:Tests.Scenario_finalized_for_Automation_test.Automationpractice_tests.RegisterToWebsiteTest@4e91d63f]" started-at="2021-10-26T09:55:33 IST" name="registration" finished-at="2021-10-26T09:55:41 IST" duration-ms="8233" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- registration -->
+        <test-method is-config="true" signature="closeBrowser()[pri:0, instance:Tests.Scenario_finalized_for_Automation_test.Automationpractice_tests.RegisterToWebsiteTest@4e91d63f]" started-at="2021-10-26T09:55:41 IST" name="closeBrowser" finished-at="2021-10-26T09:55:41 IST" duration-ms="195" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- closeBrowser -->
+      </class> <!-- Tests.Scenario_finalized_for_Automation_test.Automationpractice_tests.RegisterToWebsiteTest -->
+      <class name="Tests.Scenario_finalized_for_Automation_test.QA_click_jet_tests.NegativeTestBookFlightTest">
+        <test-method is-config="true" signature="intializeDriver()[pri:0, instance:Tests.Scenario_finalized_for_Automation_test.QA_click_jet_tests.NegativeTestBookFlightTest@1a04f701]" started-at="2021-10-26T09:55:15 IST" name="intializeDriver" finished-at="2021-10-26T09:55:16 IST" duration-ms="1077" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- intializeDriver -->
+        <test-method is-config="true" signature="openBrowser()[pri:0, instance:Tests.Scenario_finalized_for_Automation_test.QA_click_jet_tests.NegativeTestBookFlightTest@1a04f701]" started-at="2021-10-26T09:55:16 IST" name="openBrowser" finished-at="2021-10-26T09:55:18 IST" duration-ms="2160" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- openBrowser -->
+        <test-method signature="NegativeTestSameDepAndArrivalLoc()[pri:0, instance:Tests.Scenario_finalized_for_Automation_test.QA_click_jet_tests.NegativeTestBookFlightTest@1a04f701]" started-at="2021-10-26T09:55:18 IST" name="NegativeTestSameDepAndArrivalLoc" finished-at="2021-10-26T09:55:24 IST" duration-ms="5627" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- NegativeTestSameDepAndArrivalLoc -->
+        <test-method is-config="true" signature="closeBrowser()[pri:0, instance:Tests.Scenario_finalized_for_Automation_test.QA_click_jet_tests.NegativeTestBookFlightTest@1a04f701]" started-at="2021-10-26T09:55:24 IST" name="closeBrowser" finished-at="2021-10-26T09:55:24 IST" duration-ms="230" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- closeBrowser -->
+      </class> <!-- Tests.Scenario_finalized_for_Automation_test.QA_click_jet_tests.NegativeTestBookFlightTest -->
+      <class name="Tests.Scenario_finalized_for_Automation_test.Automationpractice_tests.LoginWebsiteTest">
+        <test-method is-config="true" signature="intializeDriver()[pri:0, instance:Tests.Scenario_finalized_for_Automation_test.Automationpractice_tests.LoginWebsiteTest@d4342c2]" started-at="2021-10-26T09:55:41 IST" name="intializeDriver" finished-at="2021-10-26T09:55:42 IST" duration-ms="680" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- intializeDriver -->
+        <test-method is-config="true" signature="openBrowser()[pri:0, instance:Tests.Scenario_finalized_for_Automation_test.Automationpractice_tests.LoginWebsiteTest@d4342c2]" started-at="2021-10-26T09:55:42 IST" name="openBrowser" finished-at="2021-10-26T09:55:48 IST" duration-ms="6271" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- openBrowser -->
+        <test-method signature="validLogin()[pri:1, instance:Tests.Scenario_finalized_for_Automation_test.Automationpractice_tests.LoginWebsiteTest@d4342c2]" started-at="2021-10-26T09:55:48 IST" name="validLogin" finished-at="2021-10-26T09:56:38 IST" duration-ms="49779" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- validLogin -->
+        <test-method is-config="true" signature="closeBrowser()[pri:0, instance:Tests.Scenario_finalized_for_Automation_test.Automationpractice_tests.LoginWebsiteTest@d4342c2]" started-at="2021-10-26T09:56:38 IST" name="closeBrowser" finished-at="2021-10-26T09:56:38 IST" duration-ms="206" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- closeBrowser -->
+      </class> <!-- Tests.Scenario_finalized_for_Automation_test.Automationpractice_tests.LoginWebsiteTest -->
+      <class name="Tests.Scenario_finalized_for_Automation_test.Automationpractice_tests.NegativeAddToCartScenario">
+        <test-method is-config="true" signature="intializeDriver()[pri:0, instance:Tests.Scenario_finalized_for_Automation_test.Automationpractice_tests.NegativeAddToCartScenario@2bbf180e]" started-at="2021-10-26T09:56:38 IST" name="intializeDriver" finished-at="2021-10-26T09:56:39 IST" duration-ms="686" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- intializeDriver -->
+        <test-method is-config="true" signature="openBrowser()[pri:0, instance:Tests.Scenario_finalized_for_Automation_test.Automationpractice_tests.NegativeAddToCartScenario@2bbf180e]" started-at="2021-10-26T09:56:39 IST" name="openBrowser" finished-at="2021-10-26T09:56:46 IST" duration-ms="7611" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- openBrowser -->
+        <test-method signature="NegativeOrderPlace()[pri:0, instance:Tests.Scenario_finalized_for_Automation_test.Automationpractice_tests.NegativeAddToCartScenario@2bbf180e]" started-at="2021-10-26T09:56:46 IST" name="NegativeOrderPlace" finished-at="2021-10-26T09:57:09 IST" duration-ms="22759" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- NegativeOrderPlace -->
+        <test-method is-config="true" signature="closeBrowser()[pri:0, instance:Tests.Scenario_finalized_for_Automation_test.Automationpractice_tests.NegativeAddToCartScenario@2bbf180e]" started-at="2021-10-26T09:57:09 IST" name="closeBrowser" finished-at="2021-10-26T09:57:09 IST" duration-ms="173" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- closeBrowser -->
+      </class> <!-- Tests.Scenario_finalized_for_Automation_test.Automationpractice_tests.NegativeAddToCartScenario -->
+    </test> <!-- Test -->
+  </suite> <!-- Suite -->
+</testng-results>
