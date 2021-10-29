@@ -1,0 +1,1 @@
+newman run Api_Testing_assignment_1.postman_collection.json –reporters=cli,htmlextra

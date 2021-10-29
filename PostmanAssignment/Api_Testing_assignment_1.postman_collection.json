@@ -1,0 +1,307 @@
+{
+	"info": {
+		"_postman_id": "961a460d-bdd8-4cf7-93a1-5a7c0af63cb8",
+		"name": "Api_Testing_assignment_1",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get all student data",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/student/list",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"student",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post_Resquest_add_student",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Body matches string\", function () \r",
+							"{\r",
+							"    pm.expect(pm.response.text()).to.include(\"Student added\");\r",
+							"});\r",
+							"pm.environment.set(\"id\", \"106\");\r",
+							"pm.environment.set(\"already_Link_email\", \"saurabhsoni868@gmail.com\");\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"\r",
+							" let email='abcde'+_.random(1000)+'@Duisac.net'\r",
+							" pm.environment.set('emailAdd',email)\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\r\n        \"id\": 106,\r\n\r\n        \"firstName\": \"saurabh\",\r\n\r\n        \"lastName\": \"soni\",\r\n\r\n        \"email\": \"faucibusorciluctus@Duisac.net\",\r\n\r\n        \"programme\": \"Financial Analysis\",\r\n\r\n        \"courses\": [\r\n\r\n            \"Accounting\",\r\n\r\n            \"Statistics\"\r\n\r\n        ]\r\n\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/student",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"student"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get_Newly_created_student",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/student/{{id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"student",
+						"{{id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "student_belongs_to_Financial_analysis",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"const response = pm.response.json();\r",
+							"pm.test(\"check the book Program name\", function () {\r",
+							"    pm.expect(response[0].programme).to.eql(\"Financial Analysis\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/student/list?programme=Financial Analysis",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"student",
+						"list"
+					],
+					"query": [
+						{
+							"key": "programme",
+							"value": "Financial Analysis"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "try_to_register_Duplicate_email",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Email address already exists\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.sendRequest(pm.variables.get(\"Post_Resquest_add_student\"))\r",
+							"console.info(\"in pre-request\")"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\r\n        \"id\": 107,\r\n\r\n        \"firstName\": \"saurabh\",\r\n\r\n        \"lastName\": \"soni\",\r\n\r\n        \"email\": \"{{already_Link_email}}\",\r\n\r\n        \"programme\": \"Financial Analysis\",\r\n\r\n        \"courses\": [\r\n\r\n            \"Accounting\",\r\n\r\n            \"Statistics\"\r\n\r\n        ]\r\n\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/student",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"student"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Enter_invalid_email",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(500);\r",
+							"    \r",
+							"pm.test(\"ERROR\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.error).to.equal(\"Please correct the following errors\");\r",
+							"    pm.expect(jsonData.fieldErrors.email).to.equal(\"not a well-formed email address\");\r",
+							"});\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\r\n        \"id\": 107,\r\n\r\n        \"firstName\": \"saurabh\",\r\n\r\n        \"lastName\": \"soni\",\r\n\r\n        \"email\": \"demo1asfasfasfafas\",\r\n\r\n        \"programme\": \"Financial Analysis\",\r\n\r\n        \"courses\": [\r\n\r\n            \"Accounting\",\r\n\r\n            \"Statistics\"\r\n\r\n        ]\r\n\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/student",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"student"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get_data_by_program",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Body matches Computer Science\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Computer Science\");\r",
+							"    });\r",
+							"\r",
+							" pm.test(\"Body matches Criminology\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Criminology\");\r",
+							"    });   "
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/student/list?programme",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"student",
+						"list"
+					],
+					"query": [
+						{
+							"key": "programme",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
